@@ -2981,10 +2981,10 @@ input, select, textarea {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transition: -moz-transform 1.5s ease;
-				-webkit-transition: -webkit-transform 1.5s ease;
-				-ms-transition: -ms-transform 1.5s ease;
-				transition: transform 1.5s ease;
+				-moz-transition: -moz-transform 0.5s ease;
+				-webkit-transition: -webkit-transform 0.5s ease;
+				-ms-transition: -ms-transform 0.5s ease;
+				transition: transform 0.5s ease;
 				padding-bottom: 1px;
 			}
 
@@ -2993,10 +2993,10 @@ input, select, textarea {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
-				-moz-transition: -moz-transform 1.5s ease;
-				-webkit-transition: -webkit-transform 1.5s ease;
-				-ms-transition: -ms-transform 1.5s ease;
-				transition: transform 1.5s ease;
+				-moz-transition: -moz-transform 0.5s ease;
+				-webkit-transition: -webkit-transform 0.5s ease;
+				-ms-transition: -ms-transform 0.5s ease;
+				transition: transform 1 I 0.5s ease;
 				display: block;
 				height: 60px;
 				left: 0;
