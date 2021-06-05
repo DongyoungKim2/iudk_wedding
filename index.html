@@ -82,7 +82,7 @@
 										<header>
 											<h2>신부 <b>김인언</b></h2>
 										</header>
-										<a href="#" class="button"><i class="fa fa-phone" aria-hidden="true"></i> 전화</a>
+										<a href="tel:010-5221-9459" class="button"><i class="fa fa-phone" aria-hidden="true"></i> 전화</a>
 										<a href="#" class="button"><i class="fa fa-commenting" aria-hidden="true"></i> 카카오톡</a>
 										<p></p>
 									</section>
@@ -95,7 +95,7 @@
 									<header>
 										<h2>신랑 <b>김동영</b></h2>
 									</header>
-									<a href="#" class="button"><i class="fa fa-phone" aria-hidden="true"></i> 전화</a>
+									<a href="tel:010-6616-9430" class="button"><i class="fa fa-phone" aria-hidden="true"></i> 전화</a>
 									<a href="#" class="button"><i class="fa fa-commenting" aria-hidden="true"></i> 카카오톡</a>
 									<p></p>
 									</section>
@@ -161,16 +161,38 @@
 									
 								</header>
 								<div>
-								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.815112201793!2d128.67171575161873!3d35.87804748005142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35660a682090cb05%3A0x461f5c3151d476b2!2zTeyKpO2DgO2VmOyasOyKpA!5e0!3m2!1sko!2skr!4v1622851757013!5m2!1sko!2skr" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+								<!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.815112201793!2d128.67171575161873!3d35.87804748005142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35660a682090cb05%3A0x461f5c3151d476b2!2zTeyKpO2DgO2VmOyasOyKpA!5e0!3m2!1sko!2skr!4v1622851757013!5m2!1sko!2skr" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+								-->
+								<div id="map" style="width:100%;height:400px;"></div>
+								<script type="text/javascript" src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=69b1189e0aaea151a4b379660bfad606"></script>
+								<script>
+									var container = document.getElementById('map');
+									var options = {
+										center: new kakao.maps.LatLng(35.878328, 128.673854),
+										level: 3
+									};
+
+									var map = new kakao.maps.Map(container, options);
+									// 마커가 표시될 위치입니다 
+									var markerPosition  = new kakao.maps.LatLng(35.878328, 128.673854); 
+
+									// 마커를 생성합니다
+									var marker = new kakao.maps.Marker({
+										position: markerPosition
+									});
+
+									// 마커가 지도 위에 표시되도록 설정합니다
+									marker.setMap(map);
+								</script>
 								<p></p>
 								</div>
 								<div>
-									<a href="#" class="button">
+									<a href="http://naver.me/5bat9dlJ" class="button">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
 										<path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
 										<path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
 									  </svg> 네이버 지도에서 열기</a>
-									<a href="#" class="button">
+									<a href="https://surl.tmap.co.kr/b6ae114f" class="button">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
 										<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
 									  </svg> 티맵에서 열기</a>
