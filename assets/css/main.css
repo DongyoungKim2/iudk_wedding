@@ -32,6 +32,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	
 }
 
 ol, ul {
@@ -183,6 +184,7 @@ input, select, textarea {
 		margin: 0 auto;
 		max-width: 100%;
 		width: 1400px;
+		text-align: center;
 	}
 
 		.container.medium {
@@ -2135,7 +2137,7 @@ input, select, textarea {
 			table.default th {
 				font-weight: 400;
 				padding: 0.5em 1em 0.5em 1em;
-				text-align: left;
+				text-align: center;
 			}
 
 			table.default thead {
