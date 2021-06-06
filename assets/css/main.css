@@ -1716,7 +1716,13 @@ input, select, textarea {
 						}
 
 		}
-
+/* modal */
+.modal {
+	color: rgb(88, 88, 88);
+}
+.modal-footer{
+	color:rgba(163, 169, 170, 0.75)
+}
 /* Section/Article */
 
 	section.special, article.special {
