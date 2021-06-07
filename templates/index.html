@@ -8,7 +8,65 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
 		<script type="text/javascript" src="{{ url_for('static', filename='assets/js/clipboard.min.js') }}" charset="euc-kr"></script>
-			
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-836EY3Q10X"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-836EY3Q10X');
+		</script>
+		<script>
+			function attend(){
+					$.ajax({
+						type : 'POST',                                
+						url : './db_attend',
+						success : function(){
+								alert("참석 확인 감사합니다.");
+						}
+					});
+				}
+		</script>
+		<script>
+			function book(){
+				var name = $('#thename').val();
+				var phone = $('#thephone').val();
+				var message = $('#themessage').val();
+
+				var postdata = {
+					'name':name, 'phone':phone, 'message':message
+				}
+				$.ajax({
+					type: 'POST',
+					url: './db_book',
+					data: JSON.stringify(postdata),
+					dataType : 'JSON',
+					contentType: "application/json",
+					success: function(data){
+						$("#name1").text(data.data['name1']);
+						$("#text1").text(data.data['text1']);
+						
+						$("#name2").text(data.data['name2']);
+						$("#text2").text(data.data['text2']);
+
+						$("#name3").text(data.data['name3']);
+						$("#text3").text(data.data['text3']);
+
+						$("#name4").text(data.data['name4']);
+						$("#text4").text(data.data['text4']);
+
+						$("#name5").text(data.data['name5']);
+						$("#text5").text(data.data['text5']);
+						
+					},
+					error: function(request, status, error){
+						alert('ajax 통신 실패')
+						alert(error);
+					}
+				});
+			}
+		</script>
 	</head>
 	<body class="index is-preload">
 		<div id="page-wrapper">
@@ -66,9 +124,8 @@
 							<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
 						  </svg> 캘린더에 추가하기 (아이폰)</a>
 						<a href="https://calendar.google.com/event?action=TEMPLATE&tmeid=MTAxcjRrMmFrN29rNXBxMHU0dTdoZWwzYzYgZG9uZ3lvdW5nNy5raW1AbQ&tmsrc=dongyoung7.kim%40gmail.com" class="button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-								<path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-								<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+								<path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
 							  </svg> 캘린더에 추가하기 (구글) </a>
 					</header>
 
@@ -280,53 +337,57 @@
 
 
 				<section class="wrapper style2 container special">
-
+					
 						<header>
 							<h2>결혼식 참석 여부를 알려주세요</h2>
 							<p>저희 결혼식에 정성껏 모시겠습니다</p>
 						</header>
-						
-						<a href="#" class="button">참석 확인</a>
+						<button class="button" id="c_submit" onclick="attend()">참석 확인</button>
 
 				</section>
 
 				
 				<!-- Two -->
 				<section class="wrapper style3 container special">
-
-					
 					<header>
 						<h2>축하인사를 남겨주세요</h2>
 					</header>
-					<form>
+
 					<div class="cform">
-						<input type="email" class="form-control" id="c_name" placeholder="성함">
+						<input type="text" class="form-control" id="thename" placeholder="성함">
 					  </div>
 					  <div class="cform">
-	
-						<textarea class="form-control" id="c_text" rows="3" placeholder="축하의 말"></textarea>
+						<input type="text" class="form-control" id="thephone" placeholder="연락처">
+					  </div>
+					  <div class="cform">
+						<textarea class="form-control" id="themessage" rows="3" placeholder="축하의 말"></textarea>
 					  </div>
 					  <div class="cform w-100">
-						<button class="button" id="c_submit", type="button">Submit</button>
+						<button class="button" id="c_submit" onclick="book()">Submit</button>
 					  </div>
-					</form>
+		
+
 					<div>
 						<div class="card w-100">
 							<div class="card-body">
-							  <p class="card-title">김*영</p>
-							  <p class="card-text"><strong>결혼축하해요!</strong></p>
+							  <p class="card-title" id="name1">김*영</p>
+							  <strong><p class="card-text" id="text1">결혼축하해요!</p></strong>
 							</div>
 							<div class="card-body">
-								<p class="card-title">김*영</p>
-								<p class="card-text"><strong>결혼축하해요!</strong></p>
+								<p class="card-title" id="name2">김*영</p>
+								<strong><p class="card-text"  id="text2">결혼축하해요!</p></strong>
 							  </div>
 							  <div class="card-body">
-								<p class="card-title">김*영</p>
-								<p class="card-text"><strong>결혼축하해요!</strong></p>
+								<p class="card-title" id="name3">김*영</p>
+								<strong><p class="card-text"  id="text3">결혼축하해요!</p></strong>
 							  </div>
 							  <div class="card-body">
-								<p class="card-title">김*영</p>
-								<p class="card-text"><strong>결혼축하해요!</strong></p>
+								<p class="card-title" id="name4">김*영</p>
+								<strong><p class="card-text"  id="text4">결혼축하해요!</p></strong>
+							  </div>
+							  <div class="card-body">
+								<p class="card-title" id="name5">김*영</p>
+								<strong><p class="card-text" id="text5">결혼축하해요!</p></strong>
 							  </div>
 						
 						  </div>
@@ -389,8 +450,22 @@
 				</section>
 			<!-- Footer -->
 				<footer id="footer">
+					
+					
 					<ul class="copyright">
 						<li>&copy; 김인언 김동영</li>
+					</ul>
+					
+					<ul class="copyright">
+						<li><a href="https://analytics.google.com/analytics/web/#/p274902401/reports/defaulthome?params=_u..nav%3Ddefault"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+							<path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
+						  </svg></a></li>
+						<li><a href="https://github.com/DongyoungKim2/iudk_wedding"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+							<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+						  </svg></a></li>
+						<li><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+							<path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+						  </svg></a></li>
 					</ul>
 
 				</footer>
@@ -414,6 +489,37 @@
 				});
 				clipboard.on('error', function(e){
 					alert("실패하였습니다.");
+				});
+			</script>
+			<script>
+				$(document).ready(function(){
+					$.ajax({
+					type: 'POST',
+					url: './load_book',
+					dataType : 'JSON',
+					contentType: "application/json",
+					success: function(data){
+						$("#name1").text(data.data['name1']);
+						$("#text1").text(data.data['text1']);
+						
+						$("#name2").text(data.data['name2']);
+						$("#text2").text(data.data['text2']);
+
+						$("#name3").text(data.data['name3']);
+						$("#text3").text(data.data['text3']);
+
+						$("#name4").text(data.data['name4']);
+						$("#text4").text(data.data['text4']);
+
+						$("#name5").text(data.data['name5']);
+						$("#text5").text(data.data['text5']);
+						
+					},
+					error: function(request, status, error){
+						alert('ajax 통신 실패')
+						alert(error);
+					}
+				});
 				});
 			</script>
 	</body>
