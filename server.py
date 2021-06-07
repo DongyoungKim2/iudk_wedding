@@ -135,4 +135,4 @@ if __name__ == '__main__':
     conn.execute('CREATE TABLE IF NOT EXISTS attend(no INTEGER, ip TEXT, date TEXT, name TEXT, phone TEXT, comment TEXT)')
 
     # start application
-    app.run(host = '0.0.0.0', port = 5000, debug = True)
+    app.run(host = '0.0.0.0', port = 5000, debug = False)
