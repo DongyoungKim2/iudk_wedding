@@ -2,12 +2,25 @@ from flask import Flask, render_template, Response, request, redirect, url_for, 
 
 import sqlite3
 import datetime
+import random
+import pandas as pd
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if random.randrange(0,2) == 0:
+        return render_template('iu.html')
+    else:
+        return render_template('dk.html')
+
+@app.route('/dk')
+def dk():
+    return render_template('dk.html')
+
+@app.route('/iu')
+def iu():
+    return render_template('iu.html')
 
 # get client's ip test
 @app.route('/ip', methods=['GET','POST'])
@@ -38,6 +51,19 @@ def add_attend():
     conn.close()
     return 'Done'
 
+@app.route('/dbview_book', methods=['GET','POST'])
+def dbview_book():
+    dbname = "book.db"
+    conn = sqlite3.connect(dbname)
+    df = pd.read_sql_query("SELECT * FROM attend", conn)
+    return df.to_html()
+
+@app.route('/dbview_attend', methods=['GET','POST'])
+def dbview_attend():
+    dbname = "attend.db"
+    conn = sqlite3.connect(dbname)
+    df = pd.read_sql_query("SELECT * FROM attend", conn)
+    return df.to_html()
 
 # geuestbook db
 @app.route('/db_book', methods=['GET','POST'])
@@ -135,4 +161,4 @@ if __name__ == '__main__':
     conn.execute('CREATE TABLE IF NOT EXISTS attend(no INTEGER, ip TEXT, date TEXT, name TEXT, phone TEXT, comment TEXT)')
 
     # start application
-    app.run(host = '0.0.0.0', port = 5000, debug = False)
+    app.run(host = '0.0.0.0', port = 80, debug = False)
