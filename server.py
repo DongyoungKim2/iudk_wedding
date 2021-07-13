@@ -162,3 +162,9 @@ if __name__ == '__main__':
 
     # start application
     app.run(host = '0.0.0.0', port = 80, debug = False)
+
+#  ssh -i "dk_personal.pem" ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com
+#  scp -r -i "dk_personal.pem" ./iudk_wedding_v1/* ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/
+#  scp -r -i "dk_personal.pem" ./iudk_wedding_v1/templates/* ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/templates/
+# sudo pkill -f python3
+# nohup sudo python3 server.py > log.out & 
