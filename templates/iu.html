@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
 		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
 		<script type="text/javascript" src="{{ url_for('static', filename='assets/js/clipboard.min.js') }}" charset="euc-kr"></script>
-		
+
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-836EY3Q10X"></script>
 		<script>
@@ -71,7 +71,7 @@
 		</script>
 		<style>
 			.carousel-inner .carousel-item{
-			height:60vh;
+			height:55vh;
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center center;
@@ -82,6 +82,12 @@
 				padding-top:0; 
 				margin-bottom:0;
 			}
+			.customoverlay {position:relative;bottom:0px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
+			.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+			.customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+			.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
+			.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+
 		</style>
 	</head>
 	<body class="index is-preload">
@@ -120,8 +126,8 @@
 					<header class="special container">
 						<span class="icon solid fa-heart"></span>
 						<h2>저희 결혼식에 초대합니다</h2>
-						<p class="pl">서로가 마주 보며 다저온 사랑을 </p>
-						<p class="pl">	이제 함께 한 이곳을 바라보며</p>
+						<p class="pl">서로가 마주 보며 쌓아온 사랑을 </p>
+						<p class="pl">	이제 함께 한 곳을 바라보며</p>
 						<p class="pl">	걸어갈 수 있는 큰 사랑으로 키우고자 합니다.</p>
 						<p class="pl">	저희 두 사람이 사랑의 이름으로 </p>
 						<p class="pl">	지켜나갈 수 있게 앞날을</p>
@@ -133,16 +139,17 @@
 							<p class="pl">대구 M 스타하우스 </p>
 							
 							<p class="pl">2층 모닝스타홀</p>
-							<p></p>
-
-						<a target="_blank" href="ftp://ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com/iCal-20210606-102234.ics" class="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-							<path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-							<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-						  </svg> 캘린더에 추가하기 (아이폰)</a>
-						<a href="https://calendar.google.com/event?action=TEMPLATE&tmeid=MTAxcjRrMmFrN29rNXBxMHU0dTdoZWwzYzYgZG9uZ3lvdW5nNy5raW1AbQ&tmsrc=dongyoung7.kim%40gmail.com" class="button">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
-								<path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
-							  </svg> 캘린더에 추가하기 (구글) </a>
+							<p> </p>
+							<a href="{{ url_for('static', filename='iCal-20210715-093040.ics') }}"></a>
+							<a href="{{ url_for('static', filename='ical.html') }}"></a>
+							<a target="_blank" href="https://urlopen.link/bit.ly/3xCGazs" class="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+								<path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+								<path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+							  </svg> 캘린더에 추가하기 (아이폰)</a>
+							<a href="https://urlopen.link/bit.ly/3wIvjma" class="button">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive-fill" viewBox="0 0 16 16">
+									<path d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
+								  </svg> 캘린더에 추가하기 (구글) </a>
 					</header>
 
 					<!-- One -->
@@ -241,29 +248,46 @@
 									<h2>오시는 길</h2>
 									<h3>대구 M 스타하우스</h3>
 									<p class="pl">대구광역시 동구 동촌로 316 스타하우스 </p><p class="pl">(대구 동구 방촌동 1113-320)</p>
-									
+									<p></p>
 								</header>
 								<div>
-								<div id="map" style="width:100%;height:400px;"></div>
+								<div style="position: relative;">
+									<div class="border" id="map" style="width:100%;height:400px;position:relative;"></div>
+									<div style="width:80%;height:400px;z-index:10;position:absolute;background-color:transparent;top:0px;left:0px;"></div>
+							    </div>
 								<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=69b1189e0aaea151a4b379660bfad606"></script>
 								<script>
 									var container = document.getElementById('map');
 									var options = {
 										center: new kakao.maps.LatLng(35.878328, 128.673854),
-										level: 3
+										draggable: false,
+										level: 7
 									};
 
 									var map = new kakao.maps.Map(container, options);
-									// 마커가 표시될 위치입니다 
-									var markerPosition  = new kakao.maps.LatLng(35.878328, 128.673854); 
+									
 
-									// 마커를 생성합니다
-									var marker = new kakao.maps.Marker({
-										position: markerPosition
+									// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+									var content = '<div class="customoverlay">' +
+										'  <a href="https://map.kakao.com/link/map/12412463" target="_blank">' +
+										'    <span class="title">인언&동영 결혼식 (대구 M 스타하우스)</span>' +
+										'  </a>' +
+										'</div>';
+
+									// 커스텀 오버레이가 표시될 위치입니다 
+									var position = new kakao.maps.LatLng(35.878328, 128.673854);  
+
+									// 커스텀 오버레이를 생성합니다
+									var customOverlay = new kakao.maps.CustomOverlay({
+										map: map,
+										position: position,
+										content: content,
+										yAnchor: 1 
 									});
 
-									// 마커가 지도 위에 표시되도록 설정합니다
-									marker.setMap(map);
+									// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+									var zoomControl = new kakao.maps.ZoomControl();
+									map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 								</script>
 								<p></p>
 								</div>
@@ -399,7 +423,7 @@
 						<h2>Gallery</h2>
 						<p>인언 & 동영의 아름다운 시작</p>
 					</header>
-					<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+					<div id="carouselExampleIndicators" class="carousel slide bg-light" data-bs-ride="carousel">
 						<div class="carousel-indicators">
 						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></a>
 						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></a>
@@ -409,19 +433,41 @@
 						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></a>
 						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></a>
 						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" aria-label="Slide 9"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" aria-label="Slide 10"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10" aria-label="Slide 11"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11" aria-label="Slide 12"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="12" aria-label="Slide 13"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="13" aria-label="Slide 14"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="14" aria-label="Slide 15"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="15" aria-label="Slide 16"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="16" aria-label="Slide 17"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="17" aria-label="Slide 18"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="18" aria-label="Slide 19"></a>
+						  <a  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="19" aria-label="Slide 20"></a>
 		
 						</div>
 						<div class="carousel-inner" role="listbox" style=" width:100%; height: 80% !important;">
-							<div class="carousel-item active" style="background-image: url({{ url_for('static', filename='images/5.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/4.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/3.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/1.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/6.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/7.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/8.jpg')}})  "></div>
-							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/9.jpg')}})  "></div>
-							
-
+							<div class="carousel-item active" style="background-image: url({{ url_for('static', filename='images/f-.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/1----.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/1---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/2---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/2--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/3---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/3--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/4---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/4--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/5---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/5--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/6--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/6-.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/7--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/7-.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/8---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/8--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/9---.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/9--.jpg')}})  "></div>
+							<div class="carousel-item" style="background-image: url({{ url_for('static', filename='images/e-.jpg')}})  "></div>
 						</div>
 						<a class="carousel-control-prev"  data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 						  <span class="carousel-control-prev-icon" aria-hidden="true"></span>

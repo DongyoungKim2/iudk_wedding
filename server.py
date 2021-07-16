@@ -4,11 +4,19 @@ import sqlite3
 import datetime
 import random
 import pandas as pd
+import shutil
 
 app = Flask(__name__)
 
+def copyRandomImg():
+    targetpath = "./static/images/thebg.jpg"
+    imglist = ["./static/images/1---.jpg","./static/images/3---.jpg","./static/images/f-.jpg","./static/images/4---.jpg"]
+    selectedimage = imglist[random.randrange(0,len(imglist))]
+    shutil.copy(selectedimage,targetpath)
+
 @app.route('/')
 def index():
+    copyRandomImg()
     if random.randrange(0,2) == 0:
         return render_template('iu.html')
     else:
@@ -16,10 +24,12 @@ def index():
 
 @app.route('/dk')
 def dk():
+    copyRandomImg()
     return render_template('dk.html')
 
 @app.route('/iu')
 def iu():
+    copyRandomImg()
     return render_template('iu.html')
 
 # get client's ip test
@@ -159,6 +169,9 @@ if __name__ == '__main__':
     conn = sqlite3.connect("book.db")
     cur = conn.cursor()
     conn.execute('CREATE TABLE IF NOT EXISTS attend(no INTEGER, ip TEXT, date TEXT, name TEXT, phone TEXT, comment TEXT)')
+
+    # make bg img
+    copyRandomImg()
 
     # start application
     app.run(host = '0.0.0.0', port = 80, debug = False)
