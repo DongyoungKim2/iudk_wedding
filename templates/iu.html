@@ -512,6 +512,8 @@
 				<section class="wrapper style3 container special">
 	
 					<h2>사회적 거리두기 단계별 예식 안내</h2>
+					<p class="pl" style="text-align: center;">* 현 대구광역시 예식장 지침은 2단계 입니다.</p>
+					<p style="text-align: center;">(대구광역시 전체: 3단계)</p>
 					<hr class="my-8">
 					<div class="alert alert-secondary" role="alert">
 						<h3>1단계</h3>
@@ -520,14 +522,14 @@
 						<p class="pl" style="text-align: center;">인원제한 없이 이용 가능합니다.</p>
 					</div>
 					
-					<div class="alert alert-secondary" role="alert">
+					<div class="alert alert-warning" role="alert">
 						<h3>2단계</h3>
 						<p class="pl" style="text-align: center;">본식 홀 동시 입장 인원은</p>
 						<p class="pl" style="text-align: center;">99명으로 제한됩니다.</p>
 						<p class="pl" style="text-align: center;">신부대기실과 로비는 자유롭게 입장 가능</p>
 					</div>
 
-					<div class="alert alert-warning" role="alert">
+					<div class="alert alert-secondary" role="alert">
 						<h3>3단계</h3>
 						<p class="pl" style="text-align: center;">본식 홀 동시 입장 인원은</p>
 						<p class="pl" style="text-align: center;">49명으로 제한됩니다.</p>
@@ -540,7 +542,7 @@
 						<p class="pl" style="text-align: center;">49명으로 제한됩니다.</p>
 						<p class="pl" style="text-align: center;">신부대기실과 로비는 자유롭게 입장 가능</p>
 					</div>
-
+					<hr class="my-8">
 					<p class="pl" style="text-align: center;">식사를 하지 못하고 가시는 분들을 위해</p>
 					<p class="pl" style="text-align: center;">답례를 준비하였으니</p>
 					<p class="pl" style="text-align: center;">잊지 마시고 꼭 받아가 주시기 바랍니다. </p>
@@ -596,7 +598,7 @@
 						<textarea class="form-control" id="themessage" rows="3" placeholder="축하의 말"></textarea>
 					  </div>
 					  <div class="cform w-100">
-						<button class="button" id="c_submit" onclick="book()">Submit</button>
+						<button class="button" id="c_submit" onclick="book()">글 남기기</button>
 					  </div>
 		
 
@@ -625,6 +627,24 @@
 						
 						  </div>
 					</div>
+					
+					<p id="pageNumber" style="color:white;">0</p>
+					<nav class="nav justify-content-center" aria-label="Page navigation" style="text-align: center;">
+						<ul class="pagination">
+						<li class="page-item" onclick="prev()">
+							<div class="page-link" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+							</div>
+						</li>
+						<li class="page-item" onclick="next()">
+							<div class="page-link" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							<span class="sr-only">Next</span>
+							</div>
+						</li>
+						</ul>
+					</nav>
 				</section>
 
 			</article>
@@ -702,6 +722,71 @@
 					}
 				});
 				});
+			</script>
+			<script>
+				function next(){
+					pn = $('#pageNumber').text();
+					pnint = parseInt(pn);
+					purl = './db_book_page/'.concat(pnint+1)
+					$.ajax({
+						type: 'POST',
+						url: purl,
+						dataType : 'JSON',
+						contentType: "application/json",
+						success: function(data){
+							$("#name1").text(data.data['name1']);
+							$("#text1").text(data.data['text1']);
+							
+							$("#name2").text(data.data['name2']);
+							$("#text2").text(data.data['text2']);
+
+							$("#name3").text(data.data['name3']);
+							$("#text3").text(data.data['text3']);
+
+							$("#name4").text(data.data['name4']);
+							$("#text4").text(data.data['text4']);
+
+							$("#name5").text(data.data['name5']);
+							$("#text5").text(data.data['text5']);
+							if(data.result == "success"){
+								$("#pageNumber").text(pnint+1);
+							}
+						}
+					});
+				}
+			</script>
+			<script>
+				function prev(){
+					pn = $('#pageNumber').text();
+					pnint = parseInt(pn);
+					purl = './db_book_page/'.concat(pnint-1)
+					$.ajax({
+						type: 'POST',
+						url: purl,
+						dataType : 'JSON',
+						contentType: "application/json",
+						success: function(data){
+							$("#name1").text(data.data['name1']);
+							$("#text1").text(data.data['text1']);
+							
+							$("#name2").text(data.data['name2']);
+							$("#text2").text(data.data['text2']);
+
+							$("#name3").text(data.data['name3']);
+							$("#text3").text(data.data['text3']);
+
+							$("#name4").text(data.data['name4']);
+							$("#text4").text(data.data['text4']);
+
+							$("#name5").text(data.data['name5']);
+							$("#text5").text(data.data['text5']);
+
+							if(data.result == "success"){
+								$("#pageNumber").text(pnint-1);
+							}
+						}
+					});
+				}
 			</script>
 	</body>
 </html>

@@ -126,6 +126,34 @@ def add_book():
 
     return jsonify(result = "success", data = formedata)
 
+
+# geuestbook db
+@app.route('/db_book_page/<page>', methods=['GET','POST'])
+def get_page(page):
+    # print_db("book.db")
+    dbdata = get_db("book.db",-1)
+    formedata = {}
+    articleperpage = 5
+    pstart = int(page)*articleperpage
+    pend = pstart + articleperpage
+    pi = 0
+    dbdata = dbdata[::-1]
+    if len(dbdata) < pstart:
+        return jsonify(result = "error", data = "")
+    elif pstart < 0:
+        return jsonify(result = "error", data = "")
+    else:
+        for i in range(pstart,pend):
+            try:
+                formedata["name%d"%(pi+1)] = dbdata[i][3]
+                formedata["text%d"%(pi+1)] = dbdata[i][5]
+            except:
+                formedata["name%d"%(pi+1)] = ""
+                formedata["text%d"%(pi+1)] = ""
+            pi = pi + 1
+        return jsonify(result = "success", data = formedata)
+
+
 def print_db(dbname):
     conn = sqlite3.connect(dbname)
     cur = conn.cursor()
@@ -141,6 +169,8 @@ def get_db(dbname, thelist=5):
     rows = cur.fetchall()
     if len(rows) < thelist:
         return rows[::-1]
+    elif thelist == -1:
+        return rows
     else:
         return rows[len(rows)-thelist:][::-1]
 
@@ -160,16 +190,6 @@ def load_book():
 
     return jsonify(result = "success", data = formedata)
     
-def get_db(dbname, thelist=5):
-    conn = sqlite3.connect(dbname)
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM attend")
-    rows = cur.fetchall()
-    if len(rows) < thelist:
-        return rows[::-1]
-    else:
-        return rows[len(rows)-thelist:][::-1]
-
 if __name__ == '__main__':
     # create db
     conn = sqlite3.connect("attend.db")
@@ -184,10 +204,14 @@ if __name__ == '__main__':
     copyRandomImg()
 
     # start application
-    app.run(host = '0.0.0.0', port = 80, debug = False)
+    app.run(host = '0.0.0.0', port = 80, debug = True)
 
 #  ssh -i "dk_personal.pem" ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com
 #  scp -r -i "dk_personal.pem" ./iudk_wedding_v1/* ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/
 #  scp -r -i "dk_personal.pem" ./iudk_wedding_v1/templates/* ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/templates/
+
+# scp -i "../dk_personal.pem" ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/book.db ./
+# scp -i "../dk_personal.pem" ubuntu@ec2-3-34-97-152.ap-northeast-2.compute.amazonaws.com:~/wedding/attend.db ./
+
 # sudo pkill -f python3
 # nohup sudo python3 server.py > log.out & 
