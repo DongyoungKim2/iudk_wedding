@@ -32,6 +32,16 @@ def iu():
     copyRandomImg()
     return render_template('iu.html')
 
+@app.route('/pdk')
+def pdk():
+    copyRandomImg()
+    return render_template('pdk.html')
+
+@app.route('/piu')
+def piu():
+    copyRandomImg()
+    return render_template('piu.html')
+
 # get client's ip test
 @app.route('/ip', methods=['GET','POST'])
 def client_ip():
